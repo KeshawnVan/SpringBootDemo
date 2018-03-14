@@ -1,5 +1,6 @@
 package com.demo.demo.controller;
 
+import com.demo.demo.domain.User;
 import com.demo.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,5 +16,11 @@ public class UserController {
     public String queryAllUser(Model model){
         model.addAttribute("users", userService.findAll());
         return "users";
+    }
+
+    @RequestMapping("date")
+    public String receiveDate(User user){
+        System.out.println(user);
+        return "";
     }
 }

@@ -1,5 +1,7 @@
 package com.demo.demo.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -20,7 +22,8 @@ public class User implements Serializable{
 
     private Integer age;
 
-    private Date birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime birthday;
 
     @Enumerated(EnumType.ORDINAL)
     private Status status;
@@ -63,11 +66,11 @@ public class User implements Serializable{
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 

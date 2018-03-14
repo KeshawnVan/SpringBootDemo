@@ -37,7 +37,7 @@ public class DemoApplicationTests {
 		User user = new User();
 		user.setName("fkx");
 		user.setAge(18);
-		user.setBirthday(new Date());
+		user.setBirthday(LocalDateTime.now());
 		user.setStatus(Status.VALID);
 		System.out.println(userRepository.save(user));
 	}
