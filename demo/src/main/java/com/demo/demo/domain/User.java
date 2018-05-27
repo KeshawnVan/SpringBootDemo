@@ -1,9 +1,8 @@
 package com.demo.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -16,12 +15,15 @@ import java.util.Date;
 @Entity
 public class User implements Serializable{
     @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
 
     private Integer age;
 
+    private LocalDateTime birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime birthday;
 
     @Enumerated(EnumType.ORDINAL)

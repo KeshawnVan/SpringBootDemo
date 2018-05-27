@@ -41,8 +41,7 @@ public class DemoApplicationTests {
 	@Test
 	public void testRepository(){
 		User user = new User();
-		user.setId(123L);
-		user.setName("liuna");
+		user.setName("fkx");
 		user.setAge(18);
 		user.setBirthday(LocalDateTime.now());
 		user.setStatus(Status.VALID);
