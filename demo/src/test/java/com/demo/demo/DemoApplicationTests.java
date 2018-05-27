@@ -4,10 +4,13 @@ import com.demo.demo.domain.Status;
 import com.demo.demo.domain.User;
 import com.demo.demo.repository.UserRepository;
 import com.demo.demo.service.UserService;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -22,6 +25,9 @@ public class DemoApplicationTests {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private RedisTemplate<String,String> redisTemplate;
 
 	@Test
 	public void contextLoads() {
@@ -38,9 +44,34 @@ public class DemoApplicationTests {
 		user.setId(123L);
 		user.setName("liuna");
 		user.setAge(18);
-		user.setBirthday(new Date());
+		user.setBirthday(LocalDateTime.now());
 		user.setStatus(Status.VALID);
 		System.out.println(userRepository.save(user));
+	}
+
+	@Test
+	public void testFindAll(){
+		System.out.println(userRepository.findAll());
+	}
+
+	@Test
+	public void testDebug(){
+		Thread thread = new Thread(() -> System.out.println("debug"));
+		thread.start();
+	}
+
+	@Test
+	public void testRedis(){
+		redisTemplate.boundValueOps("123").set("nana");
+		String nana = redisTemplate.boundValueOps("123").get();
+		System.out.println(nana);
+	}
+
+	@Test
+	public void testUnirest() throws Exception{
+		HttpResponse<String> stringHttpResponse = Unirest.get("http://www.baidu.com")
+				.asString();
+		System.out.println(stringHttpResponse.getBody());
 	}
 
 }

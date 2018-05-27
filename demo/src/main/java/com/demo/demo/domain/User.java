@@ -22,7 +22,7 @@ public class User implements Serializable{
 
     private Integer age;
 
-    private Date birthday;
+    private LocalDateTime birthday;
 
     @Enumerated(EnumType.ORDINAL)
     private Status status;
@@ -65,11 +65,11 @@ public class User implements Serializable{
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
     }
 
